@@ -1,6 +1,4 @@
-[submodule "deps/RedisModulesSDK"]
-	path = deps/RedisModulesSDK
-	url = https://github.com/RedisLabsModules/RedisModulesSDK.git
-[submodule "deps/readies"]
-	path = deps/readies
-	url = https://github.com/RedisLabsModules/readies.git
+[submodule "thirdparty/valkey"]
+	path = thirdparty/valkey
+	url = https://github.com/valkey-io/valkey.git
+	branch = 7.2

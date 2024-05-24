@@ -1,45 +1,34 @@
-#include "5.0/redismodule.h"
-#include "rmutil/alloc.h"
-#include "rmutil/strings.h"
-#include "rmutil/util.h"
+#include "redismodule.h"
 
-/* EXAMPLE.PARSE [var]
-*/
-int ParseCommand(RedisModuleCtx *ctx, RedisModuleString **argv, int argc) {
+/* EXAMPLE.PARSE [var] */
+int ParseCommand(ValkeyModuleCtx *ctx, ValkeyModuleString **argv, int argc) {
 
   // we must have at least 4 args
   if (argc < 2) {
-    return RedisModule_WrongArity(ctx);
+    return ValkeyModule_WrongArity(ctx);
   }
 
   // init auto memory for created strings
-  RedisModule_AutoMemory(ctx);
+  ValkeyModule_AutoMemory(ctx);
   
   double incrby = 0;
-  if (RMUtil_ParseArgs(argv, argc, 1, "d", &incrby) == REDISMODULE_OK) {
-    RedisModule_ReplyWithDouble(ctx, incrby);
-    return REDISMODULE_OK;
-  }
-
-  // something is fishy...
-  RedisModule_ReplyWithError(ctx, "Invalid arguments");
-
-  return REDISMODULE_ERR;
+  ValkeyModule_ReplyWithDouble(ctx, incrby);
+  return VALKEYMODULE_OK;
 }
 
-int RedisModule_OnLoad(RedisModuleCtx *ctx) {
+int ValkeyModule_OnLoad(ValkeyModuleCtx *ctx) {
 
   // Register the module itself
-  if (RedisModule_Init(ctx, "example", 1, REDISMODULE_APIVER_1) ==
-      REDISMODULE_ERR) {
-    return REDISMODULE_ERR;
+  if (ValkeyModule_Init(ctx, "example", 1, VALKEYMODULE_APIVER_1) ==
+      VALKEYMODULE_ERR) {
+    return VALKEYMODULE_ERR;
   }
 
   // register example.parse - the default registration syntax
-  if (RedisModule_CreateCommand(ctx, "example.parse", ParseCommand, "readonly",
-                                1, 1, 1) == REDISMODULE_ERR) {
-    return REDISMODULE_ERR;
+  if (ValkeyModule_CreateCommand(ctx, "example.parse", ParseCommand, "readonly",
+                                1, 1, 1) == VALKEYMODULE_ERR) {
+    return VALKEYMODULE_ERR;
   }
 
-  return REDISMODULE_OK;
+  return VALKEYMODULE_OK;
 }

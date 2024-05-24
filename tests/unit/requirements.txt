@@ -1,0 +1,2 @@
+rmtest==0.7.0
+configparser==7.0.0
