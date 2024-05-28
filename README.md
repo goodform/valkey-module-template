@@ -13,7 +13,7 @@ You can expect from each sample:
 
 # Usage
 
-- `git clone https://github.com/artikell/valkey-module-template`
+- `git clone https://github.com/goodform/valkey-module-template`
 - `cd <any-sample-folder>`
 - `git submodule update --init --recursive`
 - `make & make test`
@@ -24,7 +24,7 @@ You can expect from each sample:
 Create your own module through unified commands:
 
 ```
-git clone https://github.com/artikell/valkey-module-template <new-module-name>
+git clone https://github.com/goodform/valkey-module-template <new-module-name>
 cd <new-module-name>
 git submodule update --init --recursive
 git remote set-url origin <your-repo-path>
